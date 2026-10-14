@@ -1,8 +1,6 @@
-design.sv:
-
 `timescale 1ns/1ps
 
-module tls (
+module traffic_light_simulator (
   input wire clk,
   input wire rst,
   output reg red,
@@ -52,55 +50,3 @@ module tls (
     
   
 endmodule
-
-
-
-testbench.sv:
-
-`timescale 1ns/1ps
-
-module tb_tls;
-  
-  reg test_clk;
-  reg test_rst;
-  wire test_red;
-  wire test_yellow;
-  wire test_green;
-  wire [3:0] test_count;
-  
-  tls uut (
-    .clk(test_clk),
-    .rst(test_rst),
-    .red(test_red),
-    .yellow(test_yellow),
-    .green(test_green),
-    .count(test_count)
-  );
-  
-  initial begin
-    test_clk = 0;
-  end
-  
-  always begin
-    #10 test_clk = ~test_clk;
-  end
-  
-  initial begin
-    
-    $dumpfile("dump.vcd");
-    $dumpvars(0, tb_tls);
-    
-    test_rst = 1'b1; #5; 
-    test_rst = 1'b0; #5;
-    
-    #2400;
-    
-    $finish;
-    
-  end
-  
-endmodule
-
-
-
-EDA Playground file link - https://www.edaplayground.com/x/HywE
