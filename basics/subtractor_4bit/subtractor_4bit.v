@@ -9,13 +9,13 @@ module subtractor_4bit (
   always @(*) begin
     
   if (a >= b) begin
-    negative <= 1'b0; 
-  	result <= a + (~b + 1);
+    negative = 1'b0; 
+  	result = a + (~b + 1);
   end
   
   else begin
-    result <= 4'b0000;
-    negative <= 1'b1;
+    result = 4'b0000;
+    negative = 1'b1;
   end
     
   end
