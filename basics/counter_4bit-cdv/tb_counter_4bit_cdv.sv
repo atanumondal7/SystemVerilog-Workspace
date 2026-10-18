@@ -1,37 +1,3 @@
-design.sv:
-
-`timescale 1ns/1ps
-
-module counter_sv (
-  input logic clk,
-  input logic rst,
-  input logic load,
-  input logic [3:0] data_in,
-  output logic [3:0] q
-);
-  
-  always_ff @(posedge clk or posedge rst) begin
-    
-    if(rst) begin
-      q <= 4'd0;
-    end
-    
-    else if (load) begin
-      q <= data_in;
-    end
-    
-    else begin
-      q <= q + 4'd1;
-    end
-  
-  end
-  
-endmodule
-
-
-
-testbench.sv:
-
 `timescale 1ns/1ps
 
 class randomizer;
@@ -107,7 +73,7 @@ interface counter_if(input logic clk);
   
 endinterface
 
-module tb_counter_sv;
+module tb_counter_4bit_cdv;
   
   logic clk = 0;
   always #5 clk = ~clk;
@@ -116,7 +82,7 @@ module tb_counter_sv;
   
   integer error_count = 0;
   
-  counter_sv uut (
+  counter_4bit_cdv uut (
     .clk(ver.clk),
     .rst(ver.rst),
     .load(ver.load),

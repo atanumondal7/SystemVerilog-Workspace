@@ -1,8 +1,6 @@
-design.sv:
-
 `timescale 1ns/1ps
 
-module accumulator (
+module accumulator_manual (
   input wire [3:0] d,
   input wire clk,
   input wire rst,
@@ -26,9 +24,6 @@ module accumulator (
     .cout(carry)
       );
       
-  
-
-  
 endmodule
       
 
@@ -141,71 +136,3 @@ module halfadder (
   and u_and0(cout, a, b);
   
 endmodule
-
-
-
-testbench.sv:
-
-`timescale 1ns/1ps
-
-module tb_accumulator;
-  
-  reg [3:0] test_d;
-  reg test_clk;
-  reg test_rst;
-  wire [3:0] test_q;
-  wire test_carry;
-  
-  accumulator uut (
-    .d(test_d),
-    .clk(test_clk),
-    .rst(test_rst),
-    .q(test_q),
-    .carry(test_carry)
-  );
-  
-  initial begin
-    test_clk = 0;
-  end
-  
-  always begin
-    #10 test_clk = ~test_clk;
-  end
-  
-  initial begin
-    
-    $dumpfile("dump.vcd");
-    $dumpvars(0, tb_accumulator);
-    
-    test_rst = 1'b1; 
-    test_d = 4'b0000; 
-    
-    @(negedge test_clk);
-    test_rst = 1'b0;
-    
-    
-    test_d = 4'b0001; @(negedge test_clk);
-    test_d = 4'b0010; @(negedge test_clk);
-    test_d = 4'b0011; @(negedge test_clk);
-    test_d = 4'b0100; @(negedge test_clk);
-    test_d = 4'b0101; @(negedge test_clk);
-    test_d = 4'b0110; @(negedge test_clk);
-    test_d = 4'b0111; @(negedge test_clk);
-    test_d = 4'b1000; @(negedge test_clk);
-    test_d = 4'b1001; @(negedge test_clk);
-    test_d = 4'b1010; @(negedge test_clk);
-    test_d = 4'b1011; @(negedge test_clk);
-    test_d = 4'b1100; @(negedge test_clk);
-    test_d = 4'b1101; @(negedge test_clk);
-    test_d = 4'b1110; @(negedge test_clk);
-    test_d = 4'b1111; @(negedge test_clk);
-    
-    $finish;
-    
-  end
-  
-endmodule
-
-
-
-EDA Playground link - https://www.edaplayground.com/x/fw3n
