@@ -17,4 +17,9 @@ Presented in the order I built them. Each project steps up a notch from the one 
 
 ## Basics
 
-[`basics/`](basics) has the fundamental, gate-level and behavioral exercises from the very beginning of learning HDLs. It consists of adders, a mux, counters and an accumulator which are mostly plain Verilog along with one SystemVerilog exercise showcasing CDV/CRV that I built before diving deeper into advanced verification methodology.
+[`basics/`](basics) has the fundamental, gate-level and behavioral exercises from the very beginning of learning HDLs. It consists of adders, a mux, counters, an accumulator built using RCA, a 4 bit ALU with a full CDV testbench, which are mostly plain Verilog along with one SystemVerilog exercise showcasing CDV/CRV that I built before diving deeper into advanced verification methodology.
+
+Each directory inside contains:
+- The RTL
+- A testbench
+- A README for description on the mini-project
